@@ -82,10 +82,13 @@ scaler_credit = StandardScaler()
 x_credit = scaler_credit.fit_transform(x_credit)
 
 # Dividindo em base de teste e base de treinamento
-# "previsor treino"  "previsor teste"  "classe treino"      "classe teste"                  "previsor" "classe" "tamanho do teste" "garante que nao muda os valores" 
-x_credit_treinamento, x_credit_teste, y_credit_treinamento , y_credit_teste,= train_test_split(x_credit, y_credit, test_size=0.25, random_state=0)
+# "previsor treino"  "previsor teste"  "classe treino"      "classe teste"                  "previsor" "classe" "tamanho do teste" "garante que nao muda os valores"
+x_credit_treinamento, x_credit_teste, y_credit_treinamento, y_credit_teste, = train_test_split(
+    x_credit, y_credit, test_size=0.25, random_state=0)
 
 
-#Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
-with open('credit.pkl', mode= 'wb') as f:
-    pickle.dump([x_credit_treinamento, y_credit_treinamento, x_credit_teste, y_credit_teste], f)
+# Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
+# o mode significa como vai abrir e tudo isso vamos chamar de f
+with open('credit.pkl', mode='wb') as f:
+    pickle.dump([x_credit_treinamento, y_credit_treinamento,
+                x_credit_teste, y_credit_teste], f)

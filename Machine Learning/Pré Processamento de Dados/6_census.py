@@ -123,6 +123,6 @@ x_census = scaler_census.fit_transform(x_census)
 x_census_treinamento, x_census_teste, y_census_treinamento, y_census_teste = train_test_split(x_census, y_census, test_size=0.15, random_state=0)
 
 #Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
-with open('credit.pkl', mode= 'wb') as f:
+with open('census.pkl', mode= 'wb') as f:
     pickle.dump([x_census_treinamento, y_census_treinamento, x_census_teste, y_census_treino], f)
 
