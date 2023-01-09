@@ -4,7 +4,10 @@ import seaborn as sns  # Visualização de dados
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px  # Visualização de dados
+import pickle
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
 
 # Importando
 base_credit = pd.read_csv(r"C:\Users\AMD\Downloads\credit_data.csv")
@@ -69,12 +72,20 @@ maximos
 y_credit = base_credit.iloc[:, 4].values
 type(y_credit)
 
-#Como os valores oscilam muito, a idade vai de 18 a 63, e ja a divida vai de 1 até 70k, o algoritmo pode dar mais peso a divida, então precisamos normalizar isso pelo desvio padrão ou pela normalização para deixar eles na mesma escala
+# Como os valores oscilam muito, a idade vai de 18 a 63, e ja a divida vai de 1 até 70k, o algoritmo pode dar mais peso a divida, então precisamos normalizar isso pelo desvio padrão ou pela normalização para deixar eles na mesma escala
 
-#Desvio padrão - indicado quando há muitos pontos de exceção (outliers)
-#Normalização - indicado quando há grande amplitude
-#usando standardScaler para deixar todos na mesma escala
+# Desvio padrão - indicado quando há muitos pontos de exceção (outliers)
+# Normalização - indicado quando há grande amplitude
+# usando standardScaler para deixar todos na mesma escala
 scaler_credit = StandardScaler()
 #                     |prop que padroniza| o que vai ser escalonado
 x_credit = scaler_credit.fit_transform(x_credit)
 
+# Dividindo em base de teste e base de treinamento
+# "previsor treino"  "previsor teste"  "classe treino"      "classe teste"                  "previsor" "classe" "tamanho do teste" "garante que nao muda os valores" 
+x_credit_treinamento, x_credit_teste, y_credit_treinamento , y_credit_teste,= train_test_split(x_credit, y_credit, test_size=0.25, random_state=0)
+
+
+#Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
+with open('credit.pkl', mode= 'wb') as f:
+    pickle.dump([x_credit_treinamento, y_credit_treinamento, x_credit_teste, y_credit_teste], f)
