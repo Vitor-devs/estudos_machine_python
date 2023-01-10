@@ -1,0 +1,36 @@
+Aprendizagem de Naive Bayes
+
+Naive Bayes - Introdução :
+Baseado em probabilidade (Teorema de Bayes) - 
+Biblioteca no python Scikit Learn
+Ex: Filtro de Spam - No email que você recebe é aplicado o Machine Learning e lá se vê se é spam ou não
+    Mineração de Emoção em textos | Separação de documento
+No fim ele gera uma tabela de probabilidade
+
+
+Naive Bayes  - Aprendizagem
+
+imagem = C:/Users/AMD/Downloads/Naive%20Bayes.pdf
+
+História = Boa
+Dívida = Alta
+Garantias = Nenhuma
+Renda = > 35
+ 
+Caso chegue um cliente com essas caracteristicas se ignora o que tiver de atributo previsor diferente do que ele possui, e se multiplica todos os numeros gerados na tabela altos, moderados e baixos
+
+Basicamente ele calcula todas as probabilidades, seja ela alta média ou baixa com base nos atributos classe gerados pela intersecção da tabela
+
+A soma de todas as probabilidades gera um numero que é considerado o 100% e a partir disso se calcula qual a melhor classificação
+
+
+Correção Laplaciana 
+Quando chega em um ponto onde tudo se zera , e para corrigir esse zero, ele adiciona um registro adicionando um a todos os pontos 
+
+Probabilidade Apriori - Aquelas que estão próximas ao que você quer descobrir | qnt proxima / todo
+Probabilidade Pospriori - Aquelas que estão próximas ao que você quer descobrir | qnt proxima / todo multiplica pela parte/todo em um geral e chega la 
+
+Vantagem - rápido, simples, altas dimensões, boas previsões em bases pequenas (200 ou 300 registros) -
+Desvantagem - Considera atributos independentes, cada par seria independente (O que nem sempre é vdd) -
+
+

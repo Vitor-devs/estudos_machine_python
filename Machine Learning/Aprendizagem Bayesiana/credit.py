@@ -6,7 +6,10 @@ import matplotlib.pyplot as plt
 import plotly.express as px  # Visualização de dados
 import pickle
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
 
 # Importando
@@ -82,11 +85,34 @@ scaler_credit = StandardScaler()
 x_credit = scaler_credit.fit_transform(x_credit)
 
 # Dividindo em base de teste e base de treinamento
-# "previsor treino"  "previsor teste"  "classe treino"      "classe teste"                  "previsor" "classe" "tamanho do teste" "garante que nao muda os valores" 
-x_credit_treinamento, x_credit_teste, y_credit_treinamento , y_credit_teste,= train_test_split(x_credit, y_credit, test_size=0.25, random_state=0)
+# "previsor treino"  "previsor teste"  "classe treino"      "classe teste"                  "previsor" "classe" "tamanho do teste" "garante que nao muda os valores"
+x_credit_treinamento, x_credit_teste, y_credit_treinamento, y_credit_teste, = train_test_split(
+    x_credit, y_credit, test_size=0.25, random_state=0)
 
 
-#Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
-#o mode significa como vai abrir e tudo isso vamos chamar de f
-with open('credit.pkl', mode= 'wb') as f:
-    pickle.dump([x_credit_treinamento, y_credit_treinamento, x_credit_teste, y_credit_teste], f)
+# Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
+# o mode significa como vai abrir e tudo isso vamos chamar de f
+with open('credit.pkl', mode='wb') as f:
+    pickle.dump([x_credit_treinamento, y_credit_treinamento,
+                x_credit_teste, y_credit_teste], f)
+
+
+
+with open(r'C:\Users\AMD\Documents\Estudos_Machine_Python\Machine Learning\Pré Processamento de Dados\credit.pkl', 'rb') as f:
+    x_credit_treinamento, y_credit_treinamento, x_credit_teste, y_credit_teste = pickle.load(f)
+
+naive_credito = GaussianNB()
+
+#treinamento                       'previsores'          'classe (o que se espera)'
+naive_credito = naive_credito.fit(x_credit_treinamento, y_credit_treinamento)
+
+#testando                          'aqui sao os que nao tem resposta
+previsoes = naive_credito.predict(x_credit_teste)
+previsoes
+
+# aqui esta o que se esperava 
+y_credit_teste
+
+#comparando o que se esperava com o que foi obtido
+#             'o que eu queria|'o que eu treinei e executei
+accuracy_score(y_credit_teste, previsoes)
