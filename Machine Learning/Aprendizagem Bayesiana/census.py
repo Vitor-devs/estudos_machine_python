@@ -14,8 +14,6 @@ Escalone os numeros com StandardScaler
 '''
 
 
-
-
 # importando bibliotecas
 import plotly
 import pandas as pd  # Manipulação de tabelas
@@ -28,49 +26,19 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
 # importando base de dados
 base_census = pd.read_csv(r"C:\Users\AMD\Downloads\census.csv")
-base_census
-base_census.describe()
-base_census.isnull().sum()
-plt.hist(x=base_census['education-num'])
-
-plt.hist(x=base_census['hour-per-week'])
-
-grafico = px.scatter_matrix(base_census, dimensions=['age', 'education'])
-grafico
-
-# Serve bem para agrupar os dados
-grafico2 = px.treemap(base_census, path=['occupation', 'relationship', 'age'])
-grafico2
-
-# Grafico de categorias paralelas
-grafico3 = px.parallel_categories(
-    base_census, dimensions=['education', 'income'])
-grafico3
-
-# Contar quantas vezes eles aparecem e plotando no grafico
-np.unique(base_census['income'], return_counts=True)
-x_census[26]
 
 # Previsor (O que vai ser usado de métrica)
 x_census = base_census.iloc[:, 0:14].values
-x_census
 
 # Classe (O que queremos descobrir)
 y_census = base_census.iloc[:, 14].values
-y_census[26]
 
-# Atributos categóricos - Preciso transformar em numeros via labelencoder para conseguir utilizar strings para algoritmos
-label_encoder_teste = LabelEncoder()
-
-# Transformando de x_census todas as linhas da primeira coluna em numero para ser possivel fazer contas p/ machine learning
-teste = label_encoder_teste.fit_transform(x_census[:, 1])
-x_census[:, 1]
-teste
-
-#Instanciamos tudo que for categorico em um labelEncoder para poder transformar em numero e remover string
+# Instanciamos tudo que for categorico em um labelEncoder para poder transformar em numero e remover string
 label_encoder_workclass = LabelEncoder()
 label_encoder_education = LabelEncoder()
 label_encoder_marital = LabelEncoder()
@@ -80,10 +48,8 @@ label_encoder_race = LabelEncoder()
 label_encoder_sex = LabelEncoder()
 label_encoder_country = LabelEncoder()
 
-x_census
-
-#Tudo que for string está sendo convertido em numero para a máquina ler
-#iloc [linha, coluna]
+# Tudo que for string está sendo convertido em numero para a máquina ler
+# iloc [linha, coluna]
 x_census[:, 1] = label_encoder_workclass.fit_transform(x_census[:, 1])
 
 x_census[:, 3] = label_encoder_education.fit_transform(x_census[:, 3])
@@ -100,29 +66,41 @@ x_census[:, 9] = label_encoder_sex.fit_transform(x_census[:, 9])
 
 x_census[:, 13] = label_encoder_country.fit_transform(x_census[:, 13])
 
-x_census[0,:]
-
 # OneHotEncoder
-# Balancear os pesos 
+# Balancear os pesos
 # Temos varias profissões com numeros diferentes, mas não é pq pedreito é 3 e professor 4 que um é melhor que o outro, então precisamos balancear e dividir em n colunas para balancear
 # coluna de profissão após o label enconder fica 1 2 3 4 5 6, então para precaver de haver mais peso em x do que y
 
-                        #transformar                     "como"   "objeto"             "colunas"
-onehotencoder_census = ColumnTransformer(transformers=[('OneHot', OneHotEncoder(), [1,3,5,6,7,8,9,13])], remainder='passthrough') #o passthrough ele é o inplace = False do sklearn
+# transformar                     "como"   "objeto"             "colunas"
+base_censo_onecode = ColumnTransformer(transformers=[('OneHot', OneHotEncoder(), [
+                                         1, 3, 5, 6, 7, 8, 9, 13])], remainder='passthrough')  # o passthrough ele é o inplace = False do sklearn
 
-x_census = onehotencoder_census.fit_transform(x_census).toarray()
-x_census[0]
+x_census = base_censo_onecode.fit_transform(x_census).toarray()
 
-#Escalonando
+# Escalonando
 scaler_census = StandardScaler()
 x_census = scaler_census.fit_transform(x_census)
 
 
-#Dividindo em base de teste e base de treinamento
+# Dividindo em base de teste e base de treinamento
 # cada xxx_treinamento tem que ser igual a yyy_treinamento bem como em teste
-x_census_treinamento, x_census_teste, y_census_treinamento, y_census_teste = train_test_split(x_census, y_census, test_size=0.15, random_state=0)
+x_census_treinamento, x_census_teste, y_census_treinamento, y_census_teste = train_test_split(
+    x_census, y_census, test_size=0.15, random_state=0)
 
-#Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
-with open('census.pkl', mode= 'wb') as f:
-    pickle.dump([x_census_treinamento, y_census_treinamento, x_census_teste, y_census_treino], f)
+# Pickle serve para salvar o arquivo que vai ser gerado | Pickle dump guarda o que você quer e o f que sai como file é o nome do arquivo que você chamou
 
+
+
+# with open('census.pkl', mode= 'rb') as f:
+#     x_census_treinamento, y_census_treinamento, x_census_teste, y_census_treinamento = pickle.load(f)
+
+
+naive_credito = GaussianNB()
+
+naive_credito = naive_credito.fit(x_census_treinamento, y_census_treinamento)
+
+
+previsoes = naive_credito.predict(x_census_teste)
+
+# Ficou baixo pq temos duas classes
+accuracy_score(y_census_teste, previsoes)
