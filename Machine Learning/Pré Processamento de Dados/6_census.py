@@ -52,7 +52,7 @@ grafico3
 
 # Contar quantas vezes eles aparecem e plotando no grafico
 np.unique(base_census['income'], return_counts=True)
-x_census[26]
+
 
 # Previsor (O que vai ser usado de métrica)
 x_census = base_census.iloc[:, 0:14].values

@@ -1,0 +1,39 @@
+Se baseia em um conjunto de critérios
+
+Nosso dever é saber qual é mais importante que qual, em qual critério e como
+Uma cadeia de if's
+
+Calculo da entropia } faz isso para cada atributo e calculando o ganho de cada
+Ganho de informação (entropia - (ganho de x - ganho de y ...) ) Ver qual é mais importante
+
+
+
+Como funciona?
+Pega um atributo
+Faz a parte pelo todo dele 
+Ex: divida (14 atributos) dividido em alto e baixo | Separa em parte pelo todo de alta e baixa Ex: 7/14 alta e 7/14 baixa. | Dessa alta e baixa faz a correspondencia do atributo classe, Ex: dos 7/14 da divida alta, quantos deles se dividem em risco alto, baixo e moderado do atributo classe (Risco?) | E a partir dai calcula a entropia 
+
+
+Atributos com pouco ganho de informação não entra
+Split divide a representação gráfica 
+Quando se poda uma árvore você tira o que é desnecessário
+
+Poda
+erros: 
+    Viés
+    Variância - (Overfitting -  Erro pq ele fica viciado ) - Erro por sensibilidade pequena a mudanças na base de treinamento
+
+Vantagem - 
+Facil interpretação
+Sem normalizar ou padronizar os dados (Os dados possuem grande amplitude)
+rápido para classificar novos registros
+
+Desvantangem - 
+Geração de árvores muito grande
+Pequenas mudanças nos dados pode mudar a árvore (poda pode ajudar)
+Problema NP Completo
+
+
+#Arvore de decisao randomica
+- Combina resultado de n arvores
+Ensemble learning - Consultar n arvores para concluir algo, usando a conclusão de diversas arvores com resultador diferentes
