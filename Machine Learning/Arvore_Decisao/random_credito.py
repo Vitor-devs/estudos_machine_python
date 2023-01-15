@@ -11,6 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+
 
 '''
 MANUAL
@@ -24,36 +27,14 @@ JA PODE IR
 
 
 
-#Importando as bases de dados
-base_credit = pd.read_csv(r"C:\Users\AMD\Downloads\credit_data.csv")
-base_credit
+with open(r'C:\Users\AMD\Documents\Estudos_Machine_Python\Machine Learning\Pré Processamento de Dados\credit.pkl', 'rb') as f:
+    x_credit_treinamento, y_credit_treinamento, x_credit_teste, y_credit_teste = pickle.load(f)
 
-#Nesse arquivo já estão salvos os arquivos previsores e de classe
+#                                               qnt arvore
+random_forest_credit = RandomForestClassifier(n_estimators= 300, criterion='entropy',random_state=0)
 
-# x_credit = ja foi usado o label encoder dos previsores
-# y_credit = os atributos de classe
+random_forest_credit.fit(x_credit_treinamento, y_credit_treinamento)
 
-with open(r'C:\Users\AMD\Documents\Estudos_Machine_Python\Machine Learning\risco_credito.pkl', 'rb') as f:
-    x_credit, y_credit = pickle.load(f)
+previsoes = random_forest_credit.predict(x_credit_teste)
 
-arvore_risco_credito = DecisionTreeClassifier(criterion='entropy')
-
-#Fit ele encaixa os dados da maneira que estamos trabalhando, por isso usamos o fit depois de definir se vamos trabalhar com Naive Bayes, Arvore, redes Neurais e etc
-
-#o que vamos encaixar.fit(previsores, classe)
-arvore_risco_credito.fit(x_credit, y_credit)
-
-#Retorna o grau de importancia de cada previsor 
-#credito, divida, garantia, renda
-arvore_risco_credito.feature_importances_
-
-#pltoando em um grafico
-
-arvore_risco_credito.classes_
-previsores = ['historia', 'dívida', 'garantias', 'renda']
-figura,eixos = plt.subplots(nrows=1, ncols=1, figsize = (10,10))
-tree.plot_tree(arvore_risco_credito, feature_names=previsores, class_names=arvore_risco_credito.classes_, filled=True)
-
-
-teste = arvore_risco_credito.predict([[0,0,1,1]])
-teste
+accuracy_score(y_credit_teste, previsoes)

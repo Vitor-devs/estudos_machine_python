@@ -1,0 +1,11 @@
+Como fazer algoritmos de machine Learning
+
+1 - Ter uma base histórica do que se deseja usar e saber quais os atributos previsores e os atributos classe
+2 - Conferir a mais recente para ver se possui dados íntegros (Não faltantes) e caso houver, preenche-los da melhor maneira possível
+3 - Conferir se todas as colunas (dados) são relevantes (Numero de telefone por ex)
+4 - Os algoritmos trabalham com numeros então é preciso converter as variaveis categóricas em números (LabelEncoder), escalonar e caso haja uma grande amplitude entre os atributos, utilizar o OneHotEncoder
+5 - Separar uma base de treinamento maior que uma base de teste, sempre com um de cada para os classes e os atributos "train_test_split"
+6 - Escolher qual algoritmo de machine learning usar (Arvore de decisão, naive bayes e etc)
+7 - 
+8 - 
+9 - 
