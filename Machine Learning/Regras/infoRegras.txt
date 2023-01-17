@@ -1,0 +1,26 @@
+Algoritmo de Indução de regras
+
+Algoritmo com OneR - One rule - Uma regras
+Biblioteca - Orange
+Vai aplicando regras e regras
+
+Algoritmo OneR I 
+Se renda > 35000 AND historia == Boa } Risco baixo
+E assim vai
+
+Premissa:
+Se testa coisas simples primeiro
+Um atributo faz todo o trabalho (Se cria regras com base no atributo)
+
+OneR - 
+Compara cada um dos previsores com suas respectivas aparições no total de classe
+
+Prism - Mais de uma regra
+Ele vai do atributo classe revendo os atributos previsores para gerar regras
+Calcula abrangencia (Isto é, calcula quantas vezes algo aparece pra uma categoria de classe) Ex: história de crédito boa e risco alto, sendo risco o atributo classe, a abragência sendo de 1/1 | Significa que a história boa e o atributo risco alto aparecem apenas uma vez e então pega a maior abrangencia
+
+Ex: Maior abragencia para risco alto foi garantia = nenhuma (6/6)
+Então pehga ela e coloca na regra 
+Se garantia = nenhuma então risco = alto
+Coloca mais uma regra  com maior abrangencia e tudo mais
+Vai seguindo todas as regras
