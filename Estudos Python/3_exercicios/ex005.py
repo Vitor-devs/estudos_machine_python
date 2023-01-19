@@ -39,6 +39,7 @@ while True:
     sair = str(input("Quer sair? [s]im [n]ão"))
 
     if sair == "s":
+        print("Vcê acertou: ", acertos)
         break
     else:
         continue
