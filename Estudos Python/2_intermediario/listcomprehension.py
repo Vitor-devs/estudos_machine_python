@@ -7,7 +7,7 @@ lista = []
 
 # for numero in range(10):
 #     lista.append(numero)
-# aonde = [o que 'for' o que in 'da' onde]
+# aonde = [o que vai ser incluido 'for' o que é in 'da onde]
 lista = [numero for numero in range(10)]
 lista
 
@@ -50,3 +50,12 @@ novos_produtos = [{**produto, 'nome': produto['nome'], 'preco': produto['preco']
 produtos_baratos = [{**produto, 'nome' : produto['nome'], 'preco' : produto['preco']} for produto in produtos if produto['preco'] < 15]
 produtos_baratos
 
+#com mais de um for
+
+lista = []
+for x in range(3):
+    for y in range(3):
+        lista.append((x,y))
+
+lista = [(x,y,z) for x in range(3) for y in range(3) for z in range(2)]
+lista
