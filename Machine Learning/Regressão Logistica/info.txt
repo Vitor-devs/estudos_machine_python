@@ -1,0 +1,21 @@
+Regressão
+Visa descobrir e predizer classes
+Função sigmoide
+Encontrar a melhor linha para encaixar nos dados
+Desenhar aquele S que o eixo y sempre vai de 0 - 1
+
+Usa a equação da reta
+na formula de função sigmoide
+
+Usa apenas dois extremos de resultados (alto, baixo) (paga, não paga)
+
+O treinamento da função sigmoide acha os parametros da equação da reta para jogar na função sigmoide
+
+pagar x idade
+desenha um s 
+Retorna uma probabilidade
+se o pagar é mais de 50% ai ok
+se o pagar é menos de 50% ai ele não paga
+
+
+Depois de ter o s, ai você joga os registros de teste
