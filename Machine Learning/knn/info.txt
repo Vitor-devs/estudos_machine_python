@@ -1,0 +1,24 @@
+k nearest neighbour (Vizinho mais próximos)
+knn - significa aprender com o vizinho
+Aprendizagem baseada em instâncias
+
+k = vizinho mais próximo 
+O resultado de quantos k você pegar ele vai ver qual mais se repete
+Nesse algoritmo apenas se armazenam os exemplos de treinamento
+A previsão é feita somente quando uma nova instância precisa ser classificada
+
+A distancia é a distancia euclidiana 
+Quanto menor a distancia mais parecidos eles são
+
+Você pega um que deseja classificar e calcula a distancia dele com os de outros registros
+O K ele pega quais os mais próximos
+
+Transformar de atributos categóricos para atributos numéricos } Encode
+
+Variaveis sempre na mesma escala (Normalizar e padronizar)
+Indicado quando o relacionamento entre as características é complexo
+Valor de k default é indicado em 3 ou 5 
+Lento para fazer previsão
+
+
+

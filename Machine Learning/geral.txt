@@ -1,0 +1,7 @@
+NAIVE BAYES - Cria uma tabela
+
+ARVORE DE DECISAO - Cria uma arvore que seleciona um critério e vai se desenvolvendo para ir classificando até chegar em um resultado
+
+REGRAS - Cria um algoritmo baseado em regras 
+
+KNN - Aprende com quem estiver mais próximo dele
