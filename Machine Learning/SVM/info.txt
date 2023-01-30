@@ -1,0 +1,28 @@
+Máquinas de Vetores de Suporte (SVM)
+
+foca em matematica mais complexa
+Usado mais para tarefas complexas: reconhecimento de caracter, voz, imagem
+Parecido com a regressão e ele procura a melhor reta
+Aprende hiperplanos de separação com margem máxima (Maior distância de um elemento da linha) 
+Maças x Peras
+Ver por exemplo, a maior distancia do elemento 
+Quanto mais proximo da reta mais a maçã é verde e a pera vermelha
+Verifica o novo registro baseado em onde o registro está na reta 
+
+Ideas de como achar - Convex hulls 
+Calcular a distancia entre dois registros próximos e traçar uma reta
+
+Erros e custos 
+
+Linear e Não Linear
+
+Linear - AND 
+Se o eixo x estiver do lado tal e tal, ele é x 
+
+Não Linear Separavel (Kernel Trick) - OR
+Varias linhas para separar os dados - Muda a linha de lugar  - Visa transformar em um sistema linear 
+Usado para classificar e regressão | Mais facil que redes neurais 
+Necessário testar varias combinações
+Pode ser lento
+Black box (Não consegue ver tudo)
+
