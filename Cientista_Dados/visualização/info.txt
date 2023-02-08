@@ -1,0 +1,12 @@
+Fase que se relaciona com ver os dados
+Durante a analise exploratoria: (para equipe)
+- relação
+- outliers
+- limites
+- tendencias
+- padrões
+
+Durante a fase explanatoria: (para cliente/público)
+- Conclusão
+- Evidências
+- Sofisticação

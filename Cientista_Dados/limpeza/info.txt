@@ -1,0 +1,1 @@
+Fase que se dedica a limpar os dados e eliminar inconsistencias
