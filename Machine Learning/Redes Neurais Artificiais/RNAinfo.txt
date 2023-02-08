@@ -1,0 +1,99 @@
+Muito bom para muitos dados e problemas complexos 
+Visa imitar o sistema nervoso de humanos no processo de aprendizagem
+Neuronio
+Dendrito - Por onde entra por um valor de entrada e o neuronio ativa dependendo do valor de entrada - 
+Axonio- Onde percorre o sinal eletrico - faz a ligação entre neuronios
+O resultado depende do que sair, isto é, se for ativado
+
+Neuronio Artificial
+Composto por:
+Entrada (N numero de coisa) - X
+Peso (Um peso para cada entrada) - W
+Entra as entrada com o peso na função de somatório somando o (xi * wi) + (xi * wi)
+Em seguida entra na step function/função degrau (Que diz se ela é ativada ou não)
+
+
+Ex:
+Maior que zero - ativa
+Caso contrario - não ativa
+
+(Sinapse)
+Peso positivo - Aumenta a função degrau
+Peso negativo - Inibe a função degrau
+Conhecimento da rede neural são os pesos, então as entradas podem ser as mesmas mas se mudar os pesos tudo muda
+Analisa os atributos e decide os pesos
+
+Ex:                                                 w1         w2      w3      w4            w5
+Achar peso para cada um dos atributos (entradas: Historia, salario, divida, garantia e renda anual) entra a função de soma + ativação e ve o que sai
+Treinamento - Achar pesos
+E achar o atributo classe
+
+aprendizagem por reforço - Aprender com as interações
+Focando em classificação
+
+Dicas:
+Para encontrar bons pesos se usa o Operador AND nos atributos previsores
+Se treina a rede neural para conseguir encontrar 
+
+Os pesos são atualizados até os erros serem pequenos
+
+peso(n+1) = peso(n) + (taxaAprendizagem*entrada*erro)
+Onde n = valor atual do peso
+
+É usado o mesmo peso para cada atributo
+erro = resposta correta - resposta obtida
+
+Quando não for possível trabalhar com um problema linearmente separável, então se usa multicamadas (Cada entrada se comunica com as camadas (Cada = Soma + Ativação)) e elas falam com a camada de saída
+De cada lado tem pesos
+Estradas (com pesos) - Se liga a n camadas - cada n camada se liga com a camada de saída
+
+A rede processa e retorna uma resposta(Feed forward)
+
+Step function pode ser a sigmoide tbm - y = 1 / (1 + e-^x)
+se x for grande é mais proximo de um 
+Tem a tangente hiperbólica
+Porém existe varias outras funções de ativação
+
+
+REDES MULTICAMADAS ------------------------------------------------
+2 entradas com 3 camadas
+Para cada entrada se faz a multiplicação da entrada * peso
+no fim, faz a soma. Depois se faz a conta para o valor de ativação (Sigmoide por ex, sendo o resultado da soma o valor x da função sigmoide (y = 1 / (1 + e-^x))) - Então para cada resultado da camada, se faz a soma, e então é aplicado a função de ativação 
+
+Fazendo isso para cada atributo previsor
+Depois disso se faz a conta do erro (erro = resposta esperada - resposta obtida )
+Sempre se visa diminuir o erro ou a média do erro
+1. Inicia os pesos com valores aleatórios
+2. Baseado nos dados (Aprendizagem Supervisionada), realiza os cálculos com os pesos e calcula o erro
+3. Calcula as mudanças nos pesos e os atualiza (Backpropagation/Retropropragação)
+4. O algoritmo termina quando o erro é pequeno
+
+Inicializa pesos => Calcula saídas => Calcula o erro => Calcula pesos => Atualiza pesos => (Verifica se o erro é pequeno ou não)
+
+Cost function = a quantidade de erro que a rede neural tem 
+
+Gradiente
+Imagina uma rede, em um plano tridimensional, seja la qual for, ele tende a ir descendo, até parar na base, o que é entendivel, e com cada peso ele tem que ir descendo até o erro estar la embaixo (Visa o minimo global) - Bolinha de gude em uma tijela
+Meios:
+Derivada }=> da curva 
+Cálculo do delta }=> auxilia no gradiente
+Backpropagation }
+Learning Rate
+Momentum
+Como? 
+-força bruta (testando todas) 
+-simmulated anealing
+-algoritmos genéticos
+Gradiente é calculado para saber quanto ajustar os pesos
+Grafico de erro x peso
+Direcionamos o algoritmo para alcançar o maior fundo
+Para saber onde ele vai?
+pega o resultado da sigmoide e joga na formula d = y * (1-y)
+
+Para onde ir? Usa o delta da camada de saida para cada camada
+DeltaSaida = Erro * DerivadaSigmoide 
+
+
+
+
+
