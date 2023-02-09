@@ -68,7 +68,7 @@ Sempre se visa diminuir o erro ou a média do erro
 3. Calcula as mudanças nos pesos e os atualiza (Backpropagation/Retropropragação)
 4. O algoritmo termina quando o erro é pequeno
 
-Inicializa pesos => Calcula saídas => Calcula o erro => Calcula pesos => Atualiza pesos => (Verifica se o erro é pequeno ou não)
+Inicializa pesos => Calcula saídas => Calcula o erro => Calcula pesos => Atualiza pesos => (Verifica se o erro é pequeno ou não) se não ele recalcula pesos
 
 Cost function = a quantidade de erro que a rede neural tem 
 
@@ -93,7 +93,44 @@ pega o resultado da sigmoide e joga na formula d = y * (1-y)
 Para onde ir? Usa o delta da camada de saida para cada camada
 DeltaSaida = Erro * DerivadaSigmoide 
 
+isso para cada neuronio (o delta de saida é o mesmo para todos) 
+DeltaEscondida = DerivadaSigmoide (o que vem da função de ativação) * peso * DeltaSaida
 
+(Fit forward)
+Entrada => Camada Escondida => Camada de Saída
 
+(Back propagation)
+Camada de Saída => Camada Escondida => Entrada
+peso    = (peso * momento) + (entrada (peso) * delta * taxa de aprendizagem)
+    (n+1)
+valor de cada função sigmoide * delta de saida } para cada entrada ~ para cada neuronio
+dai se soma tudo } desse valor para cada neuronio
+usando a fórmula acima, substitui cada valor na parte de (entrada * delta)
+acha-se assim, o peso, com que faz com que os antigos valores de peso sejam mudados
 
+momento = Escapar de Minimos Locais (nem sempre funciona) - definido pelo usuario
+    Define o quão confiável é a ultima alteração 
+        Alto: Aumenta a velocidade de convergência
+        Baixo: Pode evitar mínimos locais
 
+taxa de aprendizagem = define o quão rápido o algoritmo vai aprender - definido pelo usuario
+    Alto: A convergência é rápida mas pode perder o mínimo global (O minimo erro)
+    Baixo: Será mais lento mas tem mais chances de chegar no mínimo global (O minimo erro)
+
+Bias (viés) - ele adiciona uma entrada a mais com um peso especifico 
+
+Erros:
+MSE - MEAN SQUARE ERROR => calcula todos os erros, eleva ao quadrado => soma os resultados => divide a soma pelo numero de registros => resultado é o erro
+RMSE - ROOT MEAN SQUARE ERROR => mesma coisa só que tira a raiz 
+
+Calcula a média da diferença entre o esperado e o que foi previsto pela redeerros maiores contam mais que erros menores
+Penaliza erros maiores
+
+Quando se precisa classificar mais saidas é normal ter mais de um neuronio de saida
+
+Deep Learning - Rede neural profunda (duas ou mais camadas)
+entrada > 2 ou mais camadas > saida
+- Gradiente vai ficando menor, logo fica muito pequeno as mudanças
+- Se pode usar outros
+Por onde seguir no deep learning? redes neurais convolucionais - recorrentes
+Keras, Theano, TensorFlow
