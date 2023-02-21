@@ -111,3 +111,65 @@ agrupado.plot.bar(color=['red', 'gray', 'blue', 'green', 'pink', 'purple'])
 #se nao usarmos o count na linha 102 ele nao conta como parametro e é preciso passar o y=['count'] maqui
 agrupado.plot.pie()
 
+#boxplot com seaborn
+sns.boxplot(data=base.Volume, orient='h').set_title('Arvores')
+
+sns.boxplot(data = base)
+
+
+################HISTOGRAMA
+sns.histplot(base.Volume, kde=True, bins=10)
+base2 = pd.read_csv(r'C:\Users\AMD\Documents\Estudos_Machine_Python\Cientista_Dados\FormacaoCD\13.Prática em Python\dados\chicken.csv')
+chickenAgrupado = base2.groupby(['feed'])['weight'].sum()
+
+teste = base2.loc[base2['feed'] == 'horsebean']
+teste
+
+sns.histplot(base2.loc[base2['feed'] == 'horsebean'], kde=True)
+
+
+plt.figure()
+plt.subplot(3,2,1)
+sns.histplot(base2.loc[base2['feed'] == 'horsebean'])
+plt.subplot(3,2,2)
+sns.histplot(base2.loc[base2['feed'] == 'linseed'])
+plt.subplot(3,2,3)
+sns.histplot(base2.loc[base2['feed'] == 'soybean'])
+plt.subplot(3,2,4)
+sns.histplot(base2.loc[base2['feed'] == 'sunflower'])
+plt.subplot(3,2,5)
+sns.histplot(base2.loc[base2['feed'] == 'meatmeal'])
+plt.subplot(3,2,6)
+sns.histplot(base2.loc[base2['feed'] == 'casein'])
+plt.tight_layout()
+
+sns.scatterplot(x = baseCo2.conc, y = baseCo2.uptake)
+
+q = baseCo2.loc[baseCo2['Type'] == 'Quebec']
+m = baseCo2.loc[baseCo2['Type'] == 'Mississippi']
+
+plt.figure()
+plt.subplot(1,2,1)
+sns.scatterplot(q.conc)
+plt.subplot(1,2,2)
+sns.scatterplot(m.conc)
+
+
+ch = baseCo2.loc[baseCo2['Treatment'] == 'chilled']
+nc = baseCo2.loc[baseCo2['Treatment'] == 'nonchilled']
+
+plt.figure()
+plt.subplot(1,2,1)
+sns.scatterplot(ch.conc)
+plt.subplot(1,2,2)
+sns.scatterplot(nc.conc)
+
+base3 = pd.read_csv(r'C:\Users\AMD\Documents\Estudos_Machine_Python\Cientista_Dados\FormacaoCD\13.Prática em Python\dados\esoph.csv')
+sns.catplot(x = base3['alcgp'], y= base3['ncontrols'], data=base3)
+
+
+#para cada valor da coluna tobgp
+sns.catplot(x = base3['alcgp'], y= base3['ncontrols'], data=base3, col='tobgp')
+
+
+
